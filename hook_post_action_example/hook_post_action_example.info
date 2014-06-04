@@ -1,0 +1,6 @@
+name = Hook Post Action Example
+description = A working example for hook_post_action module
+core = 7.x
+package = Drupal
+
+dependencies[] = hook_post_action
