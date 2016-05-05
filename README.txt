@@ -21,8 +21,9 @@
   Also if you want to quickly see it working, you can enable the bundled module hook_post_action_example,
   add/delete/update some contents and visit logs admin/reports/dblog
 
-  WARNING: Module only call delete hooks when the node/entity is actually delete from database
-  However the same does not apply to update/insert since it cannot find out whether the node/entity is updated/inserted or not.
+  WARNING: The _postsave, _postinsert and _postupdate hooks are also called when the entity/node is deleted,
+  as there is no way to find out whether the entity/node is actually saved/inserted/updated.
+  However, the module does only call the delete hooks when the entity/node is actually deleted from database. 
 
 AUTHORS AND MAINTAINERS
 =======================
