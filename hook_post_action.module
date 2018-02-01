@@ -1,10 +1,16 @@
 <?php
+
 /**
  * @param $entity
  * @param $type
  */
 function hook_post_action_entity_insert($entity, $type) {
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity, $type, 'insert');
+  $entity_info = array(
+    'entity' => $entity,
+    'type' => $type,
+    'operation' => 'insert',
+  );
+  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -12,7 +18,12 @@ function hook_post_action_entity_insert($entity, $type) {
  * @param $type
  */
 function hook_post_action_entity_update($entity, $type) {
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity, $type, 'update');
+  $entity_info = array(
+    'entity' => $entity,
+    'type' => $type,
+    'operation' => 'update',
+  );
+  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -20,7 +31,12 @@ function hook_post_action_entity_update($entity, $type) {
  * @param $type
  */
 function hook_post_action_entity_delete($entity, $type) {
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity, $type, 'delete');
+  $entity_info = array(
+    'entity' => $entity,
+    'type' => $type,
+    'operation' => 'delete',
+  );
+  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -28,7 +44,10 @@ function hook_post_action_entity_delete($entity, $type) {
  * @param $type
  * @param $op
  */
-function _hook_post_action_post_save($entity, $type, $op) {
+function _hook_post_action_post_save($entity_info) {
+  $entity = $entity_info['entity'];
+  $type = $entity_info['type'];
+  $op = $entity_info['operation'];
   $entity_is_saved = FALSE;
   $new_entity = NULL;
 
