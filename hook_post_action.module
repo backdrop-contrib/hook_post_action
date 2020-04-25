@@ -10,7 +10,7 @@ function hook_post_action_entity_insert($entity, $type) {
     'type' => $type,
     'operation' => 'insert',
   );
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
+  backdrop_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -28,7 +28,7 @@ function hook_post_action_entity_update($entity, $type) {
     'operation' => 'update',
     'original' => $original,
   );
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
+  backdrop_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -41,7 +41,7 @@ function hook_post_action_entity_delete($entity, $type) {
     'type' => $type,
     'operation' => 'delete',
   );
-  drupal_register_shutdown_function('_hook_post_action_post_save', $entity_info);
+  backdrop_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
 /**
@@ -66,10 +66,15 @@ function _hook_post_action_post_save($entity_info) {
     $entity_is_saved = TRUE;
   }
   if ($op == 'delete') {
-    list($id) = entity_extract_ids($type, $entity);
-    $new_entity = entity_load($type, array($id));
-    if (!$new_entity) {
-      $entity_is_saved = TRUE;
+    try {
+      list($id) = entity_extract_ids($type, $entity);
+      $new_entity = entity_load($type, array($id));
+      if (!$new_entity) {
+        $entity_is_saved = TRUE;
+      }
+    }
+    catch (Exception  $e) {
+      watchdog('hook_post_action_test', $e->getMessage());
     }
   }
   if ($entity_is_saved) {

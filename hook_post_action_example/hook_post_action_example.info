@@ -1,6 +1,7 @@
+type = module
 name = Hook Post Action Example
 description = A working example for hook_post_action module
-core = 7.x
-package = Drupal
-
+package = System
+version = VERSION
 dependencies[] = hook_post_action
+backdrop = 1.x

@@ -20,13 +20,18 @@
  * @ingroup entity_api_hooks
  */
 function hook_entity_postsave($entity, $entity_type, $op) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', 'The @op entity $type id is @id from @function.', array(
-    '@op' => t($op . 'd'),
-    '@id' => $id,
-    '@type' => $entity_type,
-    '@function' => __FUNCTION__,
-  ));
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', 'The @op entity $type id is @id from @function.', array(
+      '@op' => t($op . 'd'),
+      '@id' => $id,
+      '@type' => $entity_type,
+      '@function' => __FUNCTION__,
+    ));
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -43,12 +48,17 @@ function hook_entity_postsave($entity, $entity_type, $op) {
  * @ingroup entity_api_hooks
  */
 function hook_entity_postinsert($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', 'The inserted entity @type id is @id from @function.', array(
-    '@id' => $id,
-    '@type' => $entity_type,
-    '@function' => __FUNCTION__,
-  ));
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', 'The inserted entity @type id is @id from @function.', [
+      '@id' => $id,
+      '@type' => $entity_type,
+      '@function' => __FUNCTION__,
+    ]);
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -65,12 +75,17 @@ function hook_entity_postinsert($entity, $entity_type) {
  * @ingroup entity_api_hooks
  */
 function hook_entity_postupdate($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', 'The updated entity @type id is @id from @function.', array(
-    '@id' => $id,
-    '@type' => $entity_type,
-    '@function' => __FUNCTION__,
-  ));
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', 'The updated entity @type id is @id from @function.', array(
+      '@id' => $id,
+      '@type' => $entity_type,
+      '@function' => __FUNCTION__,
+    ));
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -87,12 +102,17 @@ function hook_entity_postupdate($entity, $entity_type) {
  * @ingroup entity_api_hooks
  */
 function hook_entity_postdelete($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', 'The deleted entity @type id is @id from @function.', array(
-    '@id' => $id,
-    '@type' => $entity_type,
-    '@function' => __FUNCTION__,
-  ));
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', 'The deleted entity @type id is @id from @function.', array(
+      '@id' => $id,
+      '@type' => $entity_type,
+      '@function' => __FUNCTION__,
+    ));
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**

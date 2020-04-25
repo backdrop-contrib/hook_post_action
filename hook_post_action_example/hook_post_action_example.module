@@ -15,8 +15,13 @@
  * @see hook_entity_postdelete()
  */
 function hook_post_action_example_entity_postsave($entity, $entity_type, $op) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', "The {$op}d entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', "The {$op}d entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -33,8 +38,13 @@ function hook_post_action_example_entity_postsave($entity, $entity_type, $op) {
  * @see hook_entity_postdelete()
  */
 function hook_post_action_example_entity_postinsert($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', "The inserted entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', "The inserted entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -51,8 +61,13 @@ function hook_post_action_example_entity_postinsert($entity, $entity_type) {
  * @see hook_entity_postdelete()
  */
 function hook_post_action_example_entity_postupdate($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', "The updated entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', "The updated entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
@@ -69,8 +84,13 @@ function hook_post_action_example_entity_postupdate($entity, $entity_type) {
  * @see hook_entity_postdelete()
  */
 function hook_post_action_example_entity_postdelete($entity, $entity_type) {
-  list($id) = entity_extract_ids($entity_type, $entity);
-  watchdog('hook_post_action_test', "The deleted entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  try {
+    list($id) = entity_extract_ids($entity_type, $entity);
+    watchdog('hook_post_action_test', "The deleted entity {$entity_type} id is {$id} from " . __FUNCTION__);
+  }
+  catch(Exception $e) {
+    watchdog('hook_post_action_test', $e->getMessage());
+  }
 }
 
 /**
