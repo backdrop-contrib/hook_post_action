@@ -14,7 +14,7 @@
   - hook_node_postdelete
 
 === INSTALLATION ===
-  Install and enable the module as usual: http://drupal.org/node/70151
+  Install and enable the module as usual: https://backdropcms.org/user-guide/modules
 
 === USAGE ===
   Please read the hook_post_action.api file.
