@@ -23,7 +23,7 @@
   If you want to quickly see it working, you can enable the bundled module hook_post_action_example,
   add/delete/update some contents and visit your site logs at `/admin/reports/dblog`.
 
-  WARNING: The _postsave, _postinsert and _postupdate hooks are also called when the entity is deleted,
+  **WARNING:** The _postsave, _postinsert and _postupdate hooks are also called when the entity is deleted,
   as there is no way to find out whether the entity/node is actually saved/inserted/updated.
   However, the module only calls the delete hooks when the entity is actually deleted from database.
 
