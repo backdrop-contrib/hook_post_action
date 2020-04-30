@@ -2,5 +2,4 @@ type = module
 name = Hook Post Action
 description = Provides additional hooks to perform actions after an entity is inserted, updated, or deleted in the database.
 package = System
-version = VERSION
 backdrop = 1.x
