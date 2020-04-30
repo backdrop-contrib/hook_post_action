@@ -1,8 +1,7 @@
 <?php
 
 /**
- * @param $entity
- * @param $type
+ * Implements hook_entity_insert().
  */
 function hook_post_action_entity_insert($entity, $type) {
   $entity_info = array(
@@ -14,8 +13,7 @@ function hook_post_action_entity_insert($entity, $type) {
 }
 
 /**
- * @param $entity
- * @param $type
+ * Implements hook_entity_update().
  */
 function hook_post_action_entity_update($entity, $type) {
   //hook_node_update unsets the original property after calling the hook functions.
@@ -32,8 +30,7 @@ function hook_post_action_entity_update($entity, $type) {
 }
 
 /**
- * @param $entity
- * @param $type
+ * Implements hook_entity_delete().
  */
 function hook_post_action_entity_delete($entity, $type) {
   $entity_info = array(
@@ -44,10 +41,14 @@ function hook_post_action_entity_delete($entity, $type) {
   backdrop_register_shutdown_function('_hook_post_action_post_save', $entity_info);
 }
 
+
 /**
- * @param $entity
- * @param $type
- * @param $op
+ * Helper function to call the new post-hooks.
+ *
+ * @param array $entity_info
+ *  An array containing the fully-loaded entity object, the type of entity being
+ *  saved (i.e. node, user, comment), and the operation that is taking place
+ *  (insert/update/delete).
  */
 function _hook_post_action_post_save($entity_info) {
   $entity = $entity_info['entity'];
@@ -67,7 +68,7 @@ function _hook_post_action_post_save($entity_info) {
   }
   if ($op == 'delete') {
     try {
-      list($id) = entity_extract_ids($type, $entity);
+      [$id] = entity_extract_ids($type, $entity);
       $new_entity = entity_load($type, array($id));
       if (!$new_entity) {
         $entity_is_saved = TRUE;
