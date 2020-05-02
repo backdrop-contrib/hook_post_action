@@ -1,4 +1,9 @@
 <?php
+/**
+ * @file
+ * Provides additional hooks to perform actions after an entity is inserted,
+ * updated, or deleted in the database.
+ */
 
 /**
  * Implements hook_entity_insert().
