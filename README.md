@@ -32,6 +32,8 @@ Usage
 Current Maintainers
 -------------------
 * [Ryan Osītis](https://github.com/rositis)
+* [swampopus](https://github.com/swampopus)
+* Seeking additional maintainers
 
 Credits
 -------
