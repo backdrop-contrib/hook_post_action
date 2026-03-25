@@ -32,7 +32,7 @@ Usage
 Current Maintainers
 -------------------
 * [Ryan Osītis](https://github.com/rositis)
-* [Richard Peacock](https://github.com/swampopus)
+* [swampopus](https://github.com/swampopus)
 * Seeking additional maintainers
 
 Credits
